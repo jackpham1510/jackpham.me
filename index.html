@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hi, I'm Jack</title>
+  <style>
+    body * {
+      color: #333;
+    }
+
+    .title {
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    .social {
+      font-size: 1.5rem;
+      margin-top: 0.2rem;
+    }
+
+    .social span {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+
+    .social a:hover {
+      color: orange;
+    }
+
+    .typewriter span {
+      border-right: .15em solid #333;
+      animation: 
+        blink-caret .75s step-end infinite;
+    }
+
+    /* The typewriter cursor effect */
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #333; }
+    }
+  </style>
+</head>
+<body style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100vh; margin: 0; padding: 0;">
+  <h1 class="title typewriter">
+    Hi, I'm Jack Pham - <span id="typing-erase">a builder.</span>
+  </h1>
+  <p class="social">
+    <a href="https://twitter.com/jackpham_me" target="_blank">Twitter</a>
+    <span>&bull;</span>
+    <a href="https://www.linkedin.com/in/jackpham-me/" target="_blank">Linkedin</a>
+    <span>&bull;</span>
+    <a href="https://github.com/jackpham1510" target="_blank">Github</a>
+    <span>&bull;</span>
+    <a href="https://www.instagram.com/jackpham.me" target="_blank">Instagram</a>
+  </p>
+  <script>
+    async function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function type(el, text, speed) {
+      for (let i = 0; i < text.length; i++) {
+        el.textContent += text.charAt(i);
+        await sleep(speed);
+      }
+    }
+
+    async function erase(el, speed) {
+      while (el.innerText.length > 0) {
+        el.innerText = el.innerText.substring(0, el.innerText.length - 1);
+        await sleep(speed);
+      }
+    }
+
+    (async () => {
+      const $el = document.getElementById('typing-erase');
+      while (true) {
+        await sleep(2000);
+        await erase($el, 80);
+        await type($el, 'a developer.', 80);
+        await sleep(2000);
+        await erase($el, 80);
+        await type($el, 'a starter.', 80);
+        await sleep(2000);
+        await erase($el, 80);
+        await type($el, "let's connect!", 80);
+        await sleep(10_000);
+        await erase($el, 80);
+        await type($el, 'a builder.', 80);
+      }
+    })();
+  </script>
+</body>
+</html>
